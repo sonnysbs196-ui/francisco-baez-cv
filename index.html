@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francisco Javier Baez Martinez — Director Comercial</title>
+    <meta name="description" content="Director Comercial y General con más de 30 años de experiencia en empresas multinacionales y nacionales en México.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --slate-900: #1e2a33;
+            --slate-700: #374554;
+            --slate-500: #5a6b7a;
+            --slate-300: #94a3b1;
+            --slate-100: #e8ecf0;
+            --teal: #1a7a6d;
+            --teal-deep: #135c52;
+            --teal-light: #2a9e8e;
+            --teal-glow: rgba(26, 122, 109, 0.08);
+            --teal-glow-strong: rgba(26, 122, 109, 0.14);
+            --bg: #f7f8fa;
+            --white: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--slate-700);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--slate-900);
+            color: var(--white);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(26,122,109,0.15) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 30%, rgba(42,158,142,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 90%, rgba(26,122,109,0.06) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-inner { position: relative; z-index: 1; }
+
+        .hero-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--teal-light);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.2s forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            color: var(--white);
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.35s forwards;
+        }
+
+        .hero h1 strong { font-weight: 700; }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: var(--slate-300);
+            margin-top: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.5s forwards;
+        }
+
+        .hero-accent-line {
+            width: 40px;
+            height: 3px;
+            background: var(--teal);
+            margin: 2rem auto 0;
+            border-radius: 2px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.65s forwards;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.8s forwards;
+        }
+
+        .contact-item {
+            font-size: 0.82rem;
+            color: var(--slate-300);
+            letter-spacing: 0.02em;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a.contact-item:hover { color: var(--teal-light); }
+
+        .contact-item svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--teal-light);
+            fill: none;
+            stroke-width: 1.8;
+            flex-shrink: 0;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 1s forwards;
+        }
+
+        .hero-scroll span {
+            display: block;
+            width: 1px;
+            height: 36px;
+            background: linear-gradient(to bottom, var(--teal), transparent);
+            margin: 0 auto;
+            animation: scrollPulse 2.5s ease infinite;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section { padding: 4.5rem 0; }
+
+        .section-header { margin-bottom: 2.5rem; }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--slate-900);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 0.6rem;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--teal);
+            border-radius: 1px;
+        }
+
+        .profile p {
+            font-size: 1.05rem;
+            color: var(--slate-500);
+            line-height: 1.8;
+            max-width: 700px;
+            font-weight: 300;
+        }
+
+        .timeline { position: relative; }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--teal), var(--slate-100));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 3rem 2.5rem;
+        }
+
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -4.5px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--slate-300);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item.current::before {
+            background: var(--teal);
+            border-color: var(--teal);
+            box-shadow: 0 0 0 5px var(--teal-glow-strong);
+        }
+
+        .timeline-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem 1.75rem;
+            border: 1px solid var(--slate-100);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            border-color: rgba(26,122,109,0.25);
+            box-shadow: 0 4px 20px rgba(26,122,109,0.06);
+        }
+
+        .timeline-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--slate-900);
+        }
+
+        .timeline-dates {
+            font-size: 0.78rem;
+            color: var(--teal);
+            letter-spacing: 0.03em;
+            font-weight: 500;
+            white-space: nowrap;
+            background: var(--teal-glow);
+            padding: 0.2rem 0.65rem;
+            border-radius: 100px;
+        }
+
+        .timeline-company {
+            font-size: 0.9rem;
+            color: var(--slate-500);
+            margin-bottom: 0.65rem;
+            font-weight: 400;
+        }
+
+        .timeline-bullets { list-style: none; padding: 0; }
+
+        .timeline-bullets li {
+            font-size: 0.88rem;
+            color: var(--slate-500);
+            line-height: 1.65;
+            padding-left: 1.1rem;
+            position: relative;
+            margin-top: 0.35rem;
+            font-weight: 300;
+        }
+
+        .timeline-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--teal-light);
+            opacity: 0.5;
+        }
+
+        .timeline-bullets li strong {
+            color: var(--slate-700);
+            font-weight: 500;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .skill-card {
+            background: var(--white);
+            padding: 1.1rem 1.4rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--slate-700);
+            font-weight: 400;
+            border: 1px solid var(--slate-100);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .skill-card::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--teal);
+            flex-shrink: 0;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--teal);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26,122,109,0.08);
+        }
+
+        .skill-card:hover::before { opacity: 1; }
+
+        .sectors-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .sector-tag {
+            padding: 0.5rem 1.2rem;
+            border: 1px solid var(--slate-100);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--slate-500);
+            font-weight: 400;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .sector-tag:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+            background: var(--teal-glow);
+        }
+
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .edu-card {
+            background: var(--white);
+            border: 1px solid var(--slate-100);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-top: 3px solid var(--teal);
+        }
+
+        .edu-degree {
+            font-weight: 600;
+            font-size: 0.98rem;
+            color: var(--slate-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .edu-school {
+            font-size: 0.88rem;
+            color: var(--teal-deep);
+            font-weight: 400;
+        }
+
+        .edu-year {
+            font-size: 0.8rem;
+            color: var(--slate-300);
+            margin-top: 0.3rem;
+        }
+
+        .lang-row {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .lang-item {
+            background: var(--white);
+            border: 1px solid var(--slate-100);
+            border-radius: 10px;
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lang-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--slate-900);
+        }
+
+        .lang-level {
+            font-size: 0.82rem;
+            color: var(--teal);
+            background: var(--teal-glow);
+            padding: 0.15rem 0.6rem;
+            border-radius: 100px;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--slate-900);
+            color: var(--slate-300);
+        }
+
+        footer p {
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            font-weight: 300;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.7; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 640px) {
+            .hero { min-height: 70vh; padding: 3rem 1.5rem; }
+            .container { padding: 0 1.5rem; }
+            section { padding: 3.5rem 0; }
+            .timeline-top { flex-direction: column; gap: 0.25rem; }
+            .timeline-dates { align-self: flex-start; }
+            .contact-bar { gap: 1.25rem; flex-direction: column; align-items: center; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .timeline-item { padding-left: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-inner">
+            <div class="hero-label">Curriculum Vitae</div>
+            <h1>Francisco Javier<br><strong>Baez Martinez</strong></h1>
+            <p class="hero-tagline">Director Comercial &ensp;·&ensp; Director General &ensp;·&ensp; Asesor Empresarial</p>
+            <div class="hero-accent-line"></div>
+
+            <div class="contact-bar">
+                <a href="mailto:chaparrabaez3011@gmail.com" class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    chaparrabaez3011@gmail.com
+                </a>
+                <a href="tel:+525554707987" class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    +52 55 5470 7987
+                </a>
+                <span class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Mérida, México
+                </span>
+            </div>
+        </div>
+
+        <div class="hero-scroll"><span></span></div>
+    </header>
+
+    <div class="container">
+
+        <section class="profile reveal">
+            <div class="section-header"><h2>Perfil profesional</h2></div>
+            <p>Ejecutivo con más de 30 años de trayectoria en dirección comercial y liderazgo de equipos de alto rendimiento. Experiencia comprobada como Director General y Director Comercial en empresas multinacionales y nacionales, gestionando operaciones de hasta $162 millones de dólares, equipos de más de 100 personas, y exportaciones internacionales. Especializado en construir operaciones comerciales desde cero, negociaciones estratégicas con proveedores y reporte directo a propietarios y consejos de administración.</p>
+        </section>
+
+        <section class="reveal">
+            <div class="section-header"><h2>Experiencia laboral</h2></div>
+            <div class="timeline">
+
+                <div class="timeline-item current">
+                    <div class="timeline-card">
+                        <div class="timeline-top">
+                            <span class="timeline-title">Asesor Empresarial en Dirección Comercial</span>
+                            <span class="timeline-dates">2020 — Presente</span>
+                        </div>
+                        <div class="timeline-company">Dekormax</div>
+                        <ul class="timeline-bullets">
+                            <li>Asesoría estratégica en crecimiento comercial y organizacional</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item current">
+                    <div class="timeline-card">
+                        <div class="timeline-top">
+                            <span class="timeline-title">Asesor Empresarial en Dirección Comercial</span>
+                            <span class="timeline-dates">2019 — Presente</span>
+                        </div>
+                        <div class="timeline-company">Hit Point Value</div>
+                        <ul class="timeline-bullets">
+                            <li>Consultoría en crecimiento comercial y desarrollo organizacional</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-top">
+                            <span class="timeline-title">Asesor Empresarial en Dirección Comercial</span>
+                            <span class="timeline-dates">2019 — 2025</span>
+                        </div>
+                        <div class="timeline-company">Maestro Cocinero</div>
+                        <ul class="timeline-bullets">
+                            <li>Asesoría en crecimiento comercial y organizacional en el sector alimentario</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-top">
+                            <span class="timeline-title">Director General</span>
+                            <span class="timeline-dates">2009 — 2019</span>
+                        </div>
+                        <div class="timeline-company">C&M Grupo Comercial</div>
+                        <ul class="timeline-bullets">
+                            <li>Dirección comercial y operativa de empresa de exploración, producción y venta de <strong>mineral no metálico</strong> en diversas zonas del país</li>
+                            <li>Gestión de <strong>exportaciones a Brasil</strong> y operaciones a nivel nacional</li>
+                            <li>Liderazgo de equipo de <strong>20 personas</strong> con ventas mensuales de hasta <strong>$1.5 millones de pesos</strong></li>
+                            <li>Gestión de forecast anual, relaciones con proveedores y reporte directo a propietarios</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-top">
+                            <span class="timeline-title">Director Comercial</span>
+                            <span class="timeline-dates">2000 — 2009</span>
+                        </div>
+                        <div class="timeline-company">Dimasur John Deere</div>
+                        <ul class="timeline-bullets">
+                            <li>Dirección comercial y operacional de empresa <strong>iniciada desde cero en el año 2000</strong></li>
+                            <li>Ventas acumuladas de <strong>$162 millones de dólares</strong> en 8 años de operación</li>
+                            <li>Liderazgo de equipo de <strong>30 personas</strong> en distribución de maquinaria John Deere</li>
+                            <li>Negociación con proveedores y gestión de cuentas clave en el sector construcción y maquinaria</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-top">
+                            <span class="timeline-title">Gerente de Ventas</span>
+                            <span class="timeline-dates">1998 — 2000</span>
+                        </div>
+                        <div class="timeline-company">LG Electrónico México</div>
+                        <ul class="timeline-bullets">
+                            <li>Liderazgo del cambio de marca de <strong>Goldstar México a LG Electronics México</strong></li>
+                            <li>Apertura del mercado de <strong>autoservicios y tiendas departamentales</strong> a nivel nacional</li>
+                            <li>Gestión de equipo de <strong>100 personas</strong>: promotores, demostradoras y vendedores</li>
+                            <li>Formación de red de distribuidores a nivel nacional y posicionamiento de marca</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-top">
+                            <span class="timeline-title">Vendedor-Entrenador Nacional de Ventas</span>
+                            <span class="timeline-dates">1995 — 1998</span>
+                        </div>
+                        <div class="timeline-company">Gillette de México</div>
+                        <ul class="timeline-bullets">
+                            <li>Formación de distribuidores a nivel nacional para productos de consumo masivo</li>
+                            <li>Posicionamiento de marca y desarrollo de estrategias comerciales</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="section-header"><h2>Habilidades clave</h2></div>
+            <div class="skills-grid">
+                <div class="skill-card">Dirección comercial y ventas</div>
+                <div class="skill-card">Liderazgo y desarrollo de equipos</div>
+                <div class="skill-card">Forecast y planeación anual</div>
+                <div class="skill-card">Negociación con proveedores</div>
+                <div class="skill-card">Reporte a consejos de administración</div>
+                <div class="skill-card">Apertura de nuevos mercados y canales</div>
+                <div class="skill-card">Operaciones de exportación</div>
+                <div class="skill-card">Construcción de empresas desde cero</div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="section-header"><h2>Sectores de experiencia</h2></div>
+            <div class="sectors-row">
+                <span class="sector-tag">Construcción</span>
+                <span class="sector-tag">Maquinaria</span>
+                <span class="sector-tag">Minería no metálica</span>
+                <span class="sector-tag">Autoservicio</span>
+                <span class="sector-tag">Departamental</span>
+                <span class="sector-tag">Alimentación</span>
+                <span class="sector-tag">Productos de consumo</span>
+                <span class="sector-tag">Hogar</span>
+                <span class="sector-tag">Electrónica</span>
+                <span class="sector-tag">Exportación</span>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="section-header"><h2>Formación académica</h2></div>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <div class="edu-degree">Licenciatura en Administración</div>
+                    <div class="edu-school">ITAM</div>
+                    <div class="edu-year">1992</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-degree">Dirección Empresarial</div>
+                    <div class="edu-school">Universidad Iberoamericana</div>
+                    <div class="edu-year">1995</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-degree">Diplomados en Dirección Estratégica y Liderazgo</div>
+                    <div class="edu-year">1997 — 1998</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="section-header"><h2>Idiomas</h2></div>
+            <div class="lang-row">
+                <div class="lang-item">
+                    <span class="lang-name">Español</span>
+                    <span class="lang-level">Nativo</span>
+                </div>
+                <div class="lang-item">
+                    <span class="lang-name">Inglés</span>
+                    <span class="lang-level">Básico — Intermedio</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Francisco Javier Baez Martinez &ensp;·&ensp; Mérida, México</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
